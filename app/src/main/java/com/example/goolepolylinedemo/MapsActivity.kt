@@ -123,7 +123,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return
         } else {
-            locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)//Make Sure check location enable or else return null
         }
         Log.d("NEW_LAT", loc!!.latitude.toString() + "," + loc.longitude.toString())
 
