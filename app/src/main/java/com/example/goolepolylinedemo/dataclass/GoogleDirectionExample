@@ -1,0 +1,163 @@
+{
+   "geocoded_waypoints" : [
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJh_O5VSabXjkRiFXNuCOgIBg",
+         "types" : [
+            "amusement_park",
+            "establishment",
+            "park",
+            "point_of_interest",
+            "tourist_attraction"
+         ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJh7T6oEybXjkRRSZG_B7yqgA",
+         "types" : [ "establishment", "health", "point_of_interest" ]
+      }
+   ],
+   "routes" : [
+      {
+         "bounds" : {
+            "northeast" : {
+               "lat" : 23.0266798,
+               "lng" : 72.5076559
+            },
+            "southwest" : {
+               "lat" : 23.0119423,
+               "lng" : 72.50540339999999
+            }
+         },
+         "copyrights" : "Map data ©2022",
+         "legs" : [
+            {
+               "distance" : {
+                  "text" : "1.8 km",
+                  "value" : 1801
+               },
+               "duration" : {
+                  "text" : "6 mins",
+                  "value" : 339
+               },
+               "end_address" : "105, First Floor, Dev Arc Commercial Complex, Sarkhej - Gandhinagar Hwy, nr. Iscon Cross Road, Ramdev Nagar, Ahmedabad, Gujarat 380015, India",
+               "end_location" : {
+                  "lat" : 23.0266798,
+                  "lng" : 72.5076559
+               },
+               "start_address" : "2G64+VG9 Prahaladnagar Garden, Prahlad Nagar, Ahmedabad, Gujarat 380015, India",
+               "start_location" : {
+                  "lat" : 23.0119423,
+                  "lng" : 72.5063645
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "30 m",
+                        "value" : 30
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 6
+                     },
+                     "end_location" : {
+                        "lat" : 23.0119555,
+                        "lng" : 72.5066621
+                     },
+                     "html_instructions" : "Head \u003cb\u003eeast\u003c/b\u003e on \u003cb\u003e100 Feet Rd\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003e100 Feet Anand Nagar Rd\u003c/b\u003e toward \u003cb\u003eCorporate Rd\u003c/b\u003e",
+                     "polyline" : {
+                        "points" : "somkCwkpyLC{@"
+                     },
+                     "start_location" : {
+                        "lat" : 23.0119423,
+                        "lng" : 72.5063645
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.9 km",
+                        "value" : 871
+                     },
+                     "duration" : {
+                        "text" : "2 mins",
+                        "value" : 148
+                     },
+                     "end_location" : {
+                        "lat" : 23.0197657,
+                        "lng" : 72.50617410000001
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e after Prahaladnagar Garden (on the left)",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "womkCsmpyLsELeELaEDmBBw@Bu@@kIVSG{AHoAF_CJuAF"
+                     },
+                     "start_location" : {
+                        "lat" : 23.0119555,
+                        "lng" : 72.5066621
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "81 m",
+                        "value" : 81
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 18
+                     },
+                     "end_location" : {
+                        "lat" : 23.0196089,
+                        "lng" : 72.50540339999999
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eISRO Colony Rd\u003c/b\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "q`okCqjpyL^xC"
+                     },
+                     "start_location" : {
+                        "lat" : 23.0197657,
+                        "lng" : 72.50617410000001
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.8 km",
+                        "value" : 819
+                     },
+                     "duration" : {
+                        "text" : "3 mins",
+                        "value" : 167
+                     },
+                     "end_location" : {
+                        "lat" : 23.0266798,
+                        "lng" : 72.5076559
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eSG Hwy Service Rd\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003ePass by Wide Angle (on the right in 600&nbsp;m)\u003c/div\u003e\u003cdiv style=\"font-size:0.9em\"\u003eDestination will be on the right\u003c/div\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "q_okCwepyLOESEoAYu@QcB_@c@IuA[_B_@gAUuEcAk@Mi@MeAU}@SmAW_Dq@GAo@M[Ii@Mo@OIC"
+                     },
+                     "start_location" : {
+                        "lat" : 23.0196089,
+                        "lng" : 72.50540339999999
+                     },
+                     "travel_mode" : "DRIVING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "somkCwkpyLC{@sELeELaEDeDFaKXSG{AHoERuAF^xCc@KmGuAsMuC_O_D_Ck@"
+         },
+         "summary" : "Corporate Rd and SG Hwy Service Rd",
+         "warnings" : [],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}
