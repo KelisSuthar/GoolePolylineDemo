@@ -74,10 +74,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
             }
         }
 
-//        locationManager?.requestLocationUpdates(
-//            LocationManager.GPS_PROVIDER,
-//            5000, 0f, this
-//        );
+        locationManager?.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            5000, 0f, this
+        )
 //        if(!locationManager.(LocationManager.GPS_PROVIDER))
 //        {
 //            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
@@ -195,7 +195,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 //                LatLng(23.026608333333332, 72.50794166666667)
 //            ).toString()
 //        )
-
     }
 
     private fun callApi(originString: String) {

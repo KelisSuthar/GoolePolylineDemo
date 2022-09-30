@@ -3,8 +3,8 @@
     <string name="title_activity_maps">MapsActivity</string>
 
 
-<!--    <string name="map_key">AIzaSyCaGgTPZ5iC1fbet0HkWirPUie1F1nKoIo</string>-->
-<!--    <string name="map_key">AIzaSyCn23HyRn8zm-9sao4u-2x2jYFX1JZ79jI</string>-->
-<!--    <string name="map_key">AIzaSyABnoG8l_sbZW5Rx-pd11p1pS4iBD1xLag</string>-->
-    <string name="map_key">AIzaSyAyMrbXh6XrkhpCzXfNZJzu3akbUIbVqcg</string>
+    <!--    <string name="map_key">AIzaSyCaGgTPZ5iC1fbet0HkWirPUie1F1nKoIo</string>-->
+    <!--    <string name="map_key">AIzaSyCn23HyRn8zm-9sao4u-2x2jYFX1JZ79jI</string>-->
+    <!--    <string name="map_key">AIzaSyABnoG8l_sbZW5Rx-pd11p1pS4iBD1xLag</string>-->
+<!--    <string name="map_key">AIzaSyA_bd8_u6PiAKM_bUhlIhLyQWXel_5unFU</string>-->
 </resources>
