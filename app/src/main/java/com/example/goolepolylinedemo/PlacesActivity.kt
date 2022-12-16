@@ -1,62 +1,52 @@
 package com.example.goolepolylinedemo
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
+import com.example.goolepolylinedemo.ReusedMethods.Companion.getAutocompleteData
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.*
-import com.google.android.libraries.places.api.net.*
-import java.util.concurrent.ExecutionException
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
+import com.google.android.libraries.places.api.net.PlacesClient
 
 
 class PlacesActivity : AppCompatActivity() {
+    //    var ed: EditText? = null
+    var ed: AutoCompleteTextView? = null
+    var placesClient: PlacesClient? = null
+
+    var array = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        var array = ArrayList<String>()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_places)
-
+        ed = findViewById(R.id.ed)
         if (!Places.isInitialized()) {
             Places.initialize(applicationContext, resources.getString(R.string.map_key))
         }
-        val placesClient = Places.createClient(this)
-        Thread {
-            // a potentially time consuming task
-            ReusedMethods.getAutocomplete("Gujarat", placesClient)!!.forEach {
-                Log.e("PLACES_DATA_FULL", it!!.getFullText(null).toString())
-//                Log.e("PLACES_DATA_PRI", it.getPrimaryText(null).toString())
-//                Log.e("PLACES_DATA_SEC", it.getSecondaryText(null).toString())
-//                Log.e("PLACES_DATA_SEC", it.placeTypes.toString())
-//                Log.e("PLACES_DATA_SEC", it.distanceMeters.toString())
-//                val placeId = it.placeId
+        placesClient = Places.createClient(this)
+        val adapter: ArrayAdapter<String> =
+            ArrayAdapter<String>(this, android.R.layout.select_dialog_item, array)
+        ed!!.setAdapter(adapter)
+        ed!!.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
-// Specify the fields to return.
-                val placeFields = listOf(Place.Field.ID, Place.Field.NAME,Place.Field.ADDRESS,Place.Field.LAT_LNG)
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                getAutocompleteData(p0.toString(), placesClient!!) {
+                    it.forEach { data ->
+                        Log.e("LOC_DATA", data.getFullText(null).toString())
+                        adapter.add(data.getFullText(null).toString())
+                    }
+                }
+            }
 
-// Construct a request object, passing the place ID and fields array.
-//                val request = FetchPlaceRequest.newInstance(placeId, placeFields)
-//                placesClient.fetchPlace(request)
-//                    .addOnSuccessListener { response: FetchPlaceResponse ->
-//
-//                        Log.e("PLACES_DATA_LAT", response.place.latLng!!.toString())
-//                        Log.e("PLACES_DATA_LAT", response.place.latLng!!.toString())
-//                        Log.e("PLACES_DATA_LAT", response.place.latLng!!.toString())
-//                    }.addOnFailureListener { exception: Exception ->
-//                        if (exception is ApiException) {
-////                        Log.e(TAG, "Place not found: ${exception.message}")
-//                            val statusCode = exception.statusCode
-//                        }
-//                    }
-//
+            override fun afterTextChanged(p0: Editable?) {
 
             }
-        }.start()
+        })
 
     }
-
 }

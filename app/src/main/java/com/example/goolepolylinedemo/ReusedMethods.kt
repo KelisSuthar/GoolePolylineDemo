@@ -5,9 +5,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.*
-import com.google.android.libraries.places.api.net.*
+import com.google.android.libraries.places.api.model.AutocompletePrediction
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken
+import com.google.android.libraries.places.api.model.RectangularBounds
+import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse
+import com.google.android.libraries.places.api.net.PlacesClient
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
@@ -52,9 +56,38 @@ class ReusedMethods {
             } else {
                 null
             }
-
-// Define a Place ID.
-
         }
+
+        fun getAutocompleteData(
+            text: String,
+            placesClient: PlacesClient,
+            callback: (List<AutocompletePrediction>) -> Unit,
+        ) {
+            val token = AutocompleteSessionToken.newInstance()
+            val bounds = RectangularBounds.newInstance(
+                LatLng(-33.880490, 151.184363),  //dummy lat/lng
+                LatLng(-33.858754, 151.229596)
+            )
+
+            val request =
+                FindAutocompletePredictionsRequest.builder() // Call either setLocationBias() OR setLocationRestriction().
+//                    .setLocationBias(bounds) //.setLocationRestriction(bounds)
+//                    .setCountry("ng") //Nigeria
+                    .setTypeFilter(TypeFilter.ADDRESS)
+                    .setSessionToken(token)
+                    .setQuery(text)
+                    .build()
+
+            placesClient.findAutocompletePredictions(request).addOnSuccessListener { response ->
+                callback(response.autocompletePredictions)
+            }.addOnFailureListener { exception ->
+                if (exception is ApiException) {
+                    val apiException = exception as ApiException
+                    Log.e("LOC_DATA", "Place not found: " + apiException.statusCode)
+                }
+            }
+        }
+
+
     }
 }

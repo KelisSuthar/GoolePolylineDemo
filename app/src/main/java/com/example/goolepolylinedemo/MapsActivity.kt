@@ -57,17 +57,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
             ) !==
             PackageManager.PERMISSION_GRANTED
         ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
+            if (androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale(
                     this@MapsActivity,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) {
-                ActivityCompat.requestPermissions(
+                androidx.core.app.ActivityCompat.requestPermissions(
                     this@MapsActivity,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
                 )
             } else {
-                ActivityCompat.requestPermissions(
+                androidx.core.app.ActivityCompat.requestPermissions(
                     this@MapsActivity,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
                 )
@@ -106,10 +106,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
             )
         )
 
-        val loc = if (ActivityCompat.checkSelfPermission(
+        val loc = if (androidx.core.app.ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) != PackageManager.PERMISSION_GRANTED && androidx.core.app.ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
