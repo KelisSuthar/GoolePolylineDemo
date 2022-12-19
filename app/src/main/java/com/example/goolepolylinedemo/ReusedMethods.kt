@@ -1,17 +1,21 @@
 package com.example.goolepolylinedemo
 
+import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.AdapterView
+import android.widget.AutoCompleteTextView
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
-import com.google.android.libraries.places.api.model.AutocompletePrediction
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken
-import com.google.android.libraries.places.api.model.RectangularBounds
-import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.*
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.studelicious_user.ui.AddProperty.Adapter.AutoCompleteAdapter
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
@@ -64,30 +68,54 @@ class ReusedMethods {
             callback: (List<AutocompletePrediction>) -> Unit,
         ) {
             val token = AutocompleteSessionToken.newInstance()
-            val bounds = RectangularBounds.newInstance(
-                LatLng(-33.880490, 151.184363),  //dummy lat/lng
-                LatLng(-33.858754, 151.229596)
-            )
-
+//            val bounds = RectangularBounds.newInstance(
+//                LatLng(-33.880490, 151.184363),  //dummy lat/lng
+//                LatLng(-33.858754, 151.229596)
+//            )
             val request =
-                FindAutocompletePredictionsRequest.builder() // Call either setLocationBias() OR setLocationRestriction().
-//                    .setLocationBias(bounds) //.setLocationRestriction(bounds)
-//                    .setCountry("ng") //Nigeria
-                    .setTypeFilter(TypeFilter.ADDRESS)
+                FindAutocompletePredictionsRequest.builder()
                     .setSessionToken(token)
                     .setQuery(text)
                     .build()
-
             placesClient.findAutocompletePredictions(request).addOnSuccessListener { response ->
                 callback(response.autocompletePredictions)
             }.addOnFailureListener { exception ->
                 if (exception is ApiException) {
-                    val apiException = exception as ApiException
+                    val apiException = exception
                     Log.e("LOC_DATA", "Place not found: " + apiException.statusCode)
                 }
             }
         }
 
+        fun AutoCompleteTextView.setGoogleAutoComplete(context: Context) {
+            var autoCompleteAdapter: AutoCompleteAdapter? = null
+            val array = ArrayList<AutocompletePrediction>()
+            if (!Places.isInitialized()) {
+                Places.initialize(context, context.resources.getString(R.string.map_key))
+            }
+            val placesClient = Places.createClient(context)
+            this.threshold = 1
+            this.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, pos, id ->
+                Log.e("##########", autoCompleteAdapter!!.getItem(pos).getFullText(null).toString())
+                this.setText(autoCompleteAdapter!!.getItem(pos).getFullText(null))
+            }
+            this.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    getAutocompleteData(p0.toString(), placesClient) {
+                        array.clear()
+                        it.forEach {
+                            array.add(it)
+                        }
+                        autoCompleteAdapter!!.notifyDataSetChanged()
+                    }
 
+                }
+
+                override fun afterTextChanged(p0: Editable?) {}
+            })
+            autoCompleteAdapter = AutoCompleteAdapter(context, array)
+            this.setAdapter(autoCompleteAdapter)
+        }
     }
 }

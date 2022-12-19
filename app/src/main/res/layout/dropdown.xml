@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:ellipsize="end"
+    android:paddingStart="14dip"
+    android:paddingVertical="10dp"
+    android:maxLines="3"
+    android:text="Text"
+    android:paddingEnd="15dip"
+    android:textColor="?android:attr/textColorAlertDialogListItem">
+
+</androidx.appcompat.widget.AppCompatTextView>
